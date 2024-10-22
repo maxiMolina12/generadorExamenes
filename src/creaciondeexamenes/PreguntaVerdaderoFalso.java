@@ -4,6 +4,8 @@
  */
 package creaciondeexamenes;
 
+import java.io.PrintWriter;
+
 /**
  *
  * @author maxi
@@ -20,20 +22,32 @@ public class PreguntaVerdaderoFalso extends Pregunta {
 
     @Override
     public boolean respuestaCorrecto(String respuesta) {
-        // Verificamos si la respuesta del usuario es "V" o "F" (en cualquier caso)
+        //  si la respuesta del es "V" o "F" (en cualquier caso)
         if (respuesta.equalsIgnoreCase("V")) {
             return respuestaCorrecta == true;
         } else if (respuesta.equalsIgnoreCase("F")) {
             return respuestaCorrecta == false;
         }
-        // Si el usuario ingresa algo distinto a "V" o "F", se considera incorrecto
+        // Si se ingresa algo distinto a "V" o "F", se considera incorrecto
         return false;
     }
 
+    
+
     @Override
-    public void mostrarAlternativas() {
-        System.out.println("1. verdadero");
-        System.out.println("2. falso");
+    public void mostrarAlternativas(PrintWriter writer) {
+        writer.println("1. V");
+        writer.println("2. F");
+    }
+
+    @Override
+    public String getTipoPregunta() {
+        return "verdadero_falso";
+    }
+
+    @Override
+    public String getRespuestaCorrecta() {
+        return respuestaCorrecta ? "V" : "F"; // devuelve la respuesta correcta 
     }
     
 }

@@ -4,6 +4,8 @@
  */
 package creaciondeexamenes;
 
+import java.io.PrintWriter;
+
 /**
  *
  * @author maxi
@@ -24,9 +26,23 @@ public class RespuestasCortas extends Pregunta{
     }
 
     @Override
-    public void mostrarAlternativas() {
-        System.out.println("escribe una respuesta corta:");
+    public void mostrarAlternativas(PrintWriter writer) {
+        
+        writer.println("escribe una respuesta corta:");
     }
+
+    @Override
+    public String getTipoPregunta() {
+        
+        return "respuesta_corta";
+    }
+    
+    @Override
+    public String getRespuestaCorrecta() {
+        return respuestaCorrecta; // metodo para obtener la respuesta correcta
+    }
+
+
     
     
     

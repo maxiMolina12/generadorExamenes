@@ -4,6 +4,8 @@
  */
 package creaciondeexamenes;
 
+import java.io.PrintWriter;
+
 /**
  *
  * @author maxi
@@ -24,14 +26,27 @@ public class PreguntaSeleccionMultiple extends Pregunta{
         
         
     }
-
+    String letra[] = {"a","b","c","d"};
+    int i = 0;
     @Override
-    public void mostrarAlternativas() {
-        System.out.println("Opciones:");
-        for (int i = 0; i < opciones.length; i++) {
-            System.out.println((i + 1) + ". " + opciones[i]);
+    public void mostrarAlternativas(PrintWriter writer) {
+        writer.println("Opciones:");
+        for (String opcion : opciones) {
+            writer.println( letra[i] +") "+opcion); // Guarda cada opcion en el archivo
+            i++;
         }
     }
-    
+
+    @Override
+    public String getTipoPregunta() {
+        return "seleccion_multiple";
+        
+    }
+
+    @Override
+    public String getRespuestaCorrecta() {
+        return respuestaCorrecta; 
+    }
+
     
 }
