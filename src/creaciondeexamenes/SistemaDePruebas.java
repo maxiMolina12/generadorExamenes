@@ -102,14 +102,15 @@ public static void guardarPrueba(List<String> archivosSeleccionados) {
             System.out.println("error al cargar las preguntas: " + e.getMessage());
         }
     } else {
-        System.out.println("no se seleccionó ninguna carpeta de prueba.");
+        System.out.println("no se selecciono ninguna carpeta de prueba.");
     }
 }
 
     
 // metodo para realizar la prueba
 public static void realizarPrueba(List<String> archivosDePreguntas) throws IOException {
-    int puntajeTotal = 0;
+    int puntajeTotalPrueba = 0;
+    int puntajeTotalObtenido = 0;
     Scanner scanner = new Scanner(System.in);
     
     // iterar sobre los archivos de preguntas
@@ -120,18 +121,20 @@ public static void realizarPrueba(List<String> archivosDePreguntas) throws IOExc
         System.out.println(pregunta.getEnunciadoPregunta());
         pregunta.mostrarAlternativas(new PrintWriter(System.out, true));
         // capturar la respuesta
+        puntajeTotalPrueba += pregunta.getPuntaje();
         String respuestaUsuario = scanner.nextLine();
         // verificar la respuesta y sumar el puntaje
         if (pregunta.respuestaCorrecto(respuestaUsuario)) {
-            puntajeTotal += pregunta.getPuntaje();
+            puntajeTotalObtenido += pregunta.getPuntaje();
             System.out.println("¡Respuesta correcta!");
         } else {
             System.out.println("respuesta incorrecta. La respuesta correcta es: " + pregunta.getRespuestaCorrecta());
         }
+        
     }
 
     // mostrar el puntaje total al finalizar la prueba
-    System.out.println("puntaje total: " + puntajeTotal);
+    System.out.println("puntaje total: " + puntajeTotalObtenido+"/"+puntajeTotalPrueba);
 }
 
     

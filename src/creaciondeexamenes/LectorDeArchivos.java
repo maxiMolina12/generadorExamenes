@@ -54,21 +54,26 @@ public class LectorDeArchivos {
                 // pedir que se seleccione una archivo o una carpeta
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("ingresa el numero del archivo o carpeta que quiera seleccionar:");
-                int opcion = scanner.nextInt();
+                  
+                    try {
+                        // intentar leer la entrada 
+                        int opcion = scanner.nextInt();
 
-                // verificar que la opción sea valida
-                if (opcion >= 0 && opcion < elementos.length) {
-                    // Devolver la ruta del elemento seleccionado
-                    return elementos[opcion].getAbsolutePath();
-                } else {
-                    System.out.println("opcion no valida.");
+                        // verificar que la opción sea valida
+                    if (opcion >= 0 && opcion < elementos.length) {
+                    // devolver la ruta del elemento seleccionado
+                        return elementos[opcion].getAbsolutePath();
+                 }  else {
+                    System.out.println("Opcion no valida.");
                 }
-            } else {
-                System.out.println("la carpeta esta vacia o no contiene elementos.");
-            }
-        } else {
-            System.out.println("la carpeta no existe.");
+            }       catch (Exception e) {
+                     // capturar el error cuando la entrada no es un numero valido
+                        System.out.println("Error: Debes ingresar una opcion valida.");
+            }  
+
         }
+        
+        } 
 
         return null; // si no se selecciona un archivo o carpeta valida
     }
